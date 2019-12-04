@@ -1,0 +1,27 @@
+<resources>
+
+    <style name="TextTitle">
+        <item name="android:textSize">@dimen/smartspace_title_size</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:paddingLeft">@dimen/text_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/text_horizontal_padding</item>
+        <item name="android:shadowColor">@color/text_shadow</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">0.0</item>
+        <item name="android:shadowRadius">10.0</item>
+        <item name="android:fontFamily">@font/google_sans</item>
+    </style>
+
+    <style name="TextSubtitle">
+        <item name="android:textSize">@dimen/smartspace_text_size</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:paddingLeft">@dimen/text_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/text_horizontal_padding</item>
+        <item name="android:shadowColor">@color/text_shadow</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">0.0</item>
+        <item name="android:shadowRadius">9.0</item>
+        <item name="android:fontFamily">@font/google_sans</item>
+    </style>
+
+</resources>

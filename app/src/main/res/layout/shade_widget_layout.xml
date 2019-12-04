@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shadespace_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/shadespace_text"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingTop="8dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:scrollHorizontally="true"
+        android:textSize="24sp"
+        style="@style/TextTitle" />
+
+    <TextView
+        android:id="@+id/shadespace_subtext"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:scrollHorizontally="true"
+        android:textSize="16sp"
+        style="@style/TextSubtitle" />
+
+</LinearLayout>

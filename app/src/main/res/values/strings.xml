@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Smart Unread</string>
+
+    <string name="shadespace_subtext_default">Welcome home</string>
+    <string name="shadespace_subtext_charging">Battery has charged to %1$d%%</string>
+    <string name="title_missing_notification_access">Notification access needed</string>
+    <string name="title_change_settings">Change settings</string>
+    <string name="icon_badging_service_title">@string/app_name</string>
+    <string name="shadespace_subtext_double" translatable="false">%1$s – %2$s</string>
+</resources>

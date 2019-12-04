@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="widget_min_height">30dp</dimen>
+    <dimen name="widget_min_width">240dp</dimen>
+
+    <!--<dimen name="smartspace_title_size">24sp</dimen>
+    <dimen name="smartspace_text_size">16sp</dimen>-->
+
+    <dimen name="smartspace_title_size">24sp</dimen>
+    <dimen name="smartspace_text_size">16sp</dimen>
+
+    <dimen name="text_horizontal_padding">4dp</dimen>
+</resources>
