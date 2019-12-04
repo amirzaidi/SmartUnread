@@ -8,7 +8,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.RemoteViews;
@@ -16,7 +15,6 @@ import android.widget.RemoteViews;
 import java.util.List;
 
 import amirz.plugin.unread.UnreadService;
-import amirz.shade.ShadeFont;
 import amirz.smartunread.R;
 
 public class ShadeWidgetProvider extends AppWidgetProvider {
@@ -44,8 +42,6 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        ShadeFont.override(context);
-
         Intent intent = new Intent(context, ShadeWidgetProvider.class);
 
         String top = "";
