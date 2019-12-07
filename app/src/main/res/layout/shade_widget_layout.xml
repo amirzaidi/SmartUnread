@@ -17,8 +17,6 @@
         android:gravity="center"
         android:maxLines="1"
         android:paddingTop="8dp"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
         android:scrollHorizontally="true"
         android:textSize="24sp"
         style="@style/TextTitle" />
@@ -32,8 +30,6 @@
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:maxLines="1"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
         android:scrollHorizontally="true"
         android:textSize="16sp"
         style="@style/TextSubtitle" />
