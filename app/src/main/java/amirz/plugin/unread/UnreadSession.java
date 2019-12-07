@@ -33,6 +33,7 @@ class UnreadSession {
     private final DateBroadcastReceiver mDateReceiver;
     private final CalendarReceiver mCalendarReceiver;
     private final BatteryBroadcastReceiver mBatteryReceiver;
+    private final RotationReceiver mRotationReceiver;
 
     private OnClickListener mOnClick;
 
@@ -51,6 +52,7 @@ class UnreadSession {
         mDateReceiver = new DateBroadcastReceiver(context, this::reload);
         mCalendarReceiver = new CalendarReceiver(context, this::reload);
         mBatteryReceiver = new BatteryBroadcastReceiver(context, this::reload);
+        mRotationReceiver = new RotationReceiver(context, this::reload);
     }
 
     void onCreate() {
@@ -60,6 +62,7 @@ class UnreadSession {
         mDateReceiver.onResume();
         mCalendarReceiver.onResume();
         mBatteryReceiver.onResume();
+        mRotationReceiver.onResume();
 
         NotificationListener.setNotificationsChangedListener(mNotifications);
     }
@@ -73,6 +76,7 @@ class UnreadSession {
         mDateReceiver.onPause();
         mCalendarReceiver.onPause();
         mBatteryReceiver.onPause();
+        mRotationReceiver.onPause();
     }
 
     List<String> getText() {
