@@ -9,6 +9,4 @@
 
     <dimen name="smartspace_title_size">24sp</dimen>
     <dimen name="smartspace_text_size">16sp</dimen>
-
-    <dimen name="text_horizontal_padding">4dp</dimen>
 </resources>

@@ -97,8 +97,7 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
 
         float titleSize = res.getDimension(R.dimen.smartspace_title_size);
         float textSize = res.getDimension(R.dimen.smartspace_text_size);
-        float sidePadding = res.getDimension(R.dimen.widget_default_padding)
-                + res.getDimension(R.dimen.text_horizontal_padding);
+        float sidePadding = res.getDimension(R.dimen.widget_default_padding);
 
         for (int i = 0; i < appWidgetIds.length; i++) {
             int wDp = appWidgetOptions[i].getInt(
