@@ -3,6 +3,7 @@ package amirz.plugin.unread;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.service.notification.StatusBarNotification;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
@@ -19,8 +20,10 @@ import amirz.smartunread.R;
 
 class UnreadSession {
     private static final int MULTI_CLICK_DELAY = 300;
+    private static final int NOTIF_UPDATE_DELAY = 750;
 
     private final Context mContext;
+    private final Handler mHandler = new Handler();
 
     private final List<StatusBarNotification> mSbn = new ArrayList<>();
     private final NotificationRanker mRanker = new NotificationRanker(mSbn);
@@ -36,6 +39,9 @@ class UnreadSession {
     private final RotationReceiver mRotationReceiver;
 
     private OnClickListener mOnClick;
+
+    // Delay updates to keep the notification showing after pressing it.
+    private long mLastClick;
 
     public interface OnClickListener {
         void onClick();
@@ -130,6 +136,7 @@ class UnreadSession {
                 mOnClick = () -> {
                     if (pi != null) {
                         try {
+                            mLastClick = System.currentTimeMillis();
                             pi.send();
                         } catch (PendingIntent.CanceledException e) {
                             e.printStackTrace();
@@ -183,7 +190,8 @@ class UnreadSession {
     }
 
     private void reload() {
-        ShadeWidgetProvider.updateAll(mContext);
+        long delayTime = Math.max(0, NOTIF_UPDATE_DELAY + mLastClick - System.currentTimeMillis());
+        mHandler.postDelayed(() -> ShadeWidgetProvider.updateAll(mContext), delayTime);
     }
 
     private String[] splitTitle(String title) {
@@ -215,6 +223,6 @@ class UnreadSession {
             }
         }
         mMedia.onActiveSessionsChanged(null);
-        reload();
+        this.reload();
     }
 }
