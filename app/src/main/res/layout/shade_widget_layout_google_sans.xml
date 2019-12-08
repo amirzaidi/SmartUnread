@@ -18,7 +18,7 @@
         android:maxLines="1"
         android:paddingTop="8dp"
         android:scrollHorizontally="true"
-        android:textSize="24sp"
+        android:textSize="@dimen/smartspace_title_size"
         style="@style/TextTitle.GoogleSans" />
 
     <TextView
@@ -31,7 +31,7 @@
         android:gravity="center_horizontal"
         android:maxLines="1"
         android:scrollHorizontally="true"
-        android:textSize="16sp"
+        android:textSize="@dimen/smartspace_text_size"
         style="@style/TextSubtitle.GoogleSans" />
 
 </LinearLayout>
