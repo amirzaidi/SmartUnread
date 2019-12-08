@@ -6,7 +6,7 @@
         android:font="@font/google_sans_regular" />
     <font
         android:fontStyle="normal"
-        android:fontWeight="600"
+        android:fontWeight="500"
         android:font="@font/google_sans_medium" />
     <font
         android:fontStyle="normal"
