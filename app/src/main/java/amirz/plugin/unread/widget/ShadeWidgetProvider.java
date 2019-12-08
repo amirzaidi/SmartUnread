@@ -35,6 +35,10 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
 
     private final TextPaint mMeasureTop = new TextPaint();
     private final TextPaint mMeasureBottom = new TextPaint();
+
+    private final TextPaint mMeasureTopGSans = new TextPaint();
+    private final TextPaint mMeasureBottomGSans = new TextPaint();
+
     private boolean mMeasurePaintInitialized;
 
     public ShadeWidgetProvider() {
@@ -47,11 +51,18 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
             mMeasurePaintInitialized = true;
 
             LayoutInflater li = LayoutInflater.from(context);
+
             View widgetLayout = li.inflate(R.layout.shade_widget_layout, null);
             TextView topView = widgetLayout.findViewById(R.id.shadespace_text);
             TextView bottomView = widgetLayout.findViewById(R.id.shadespace_subtext);
             mMeasureTop.set(topView.getPaint());
             mMeasureBottom.set(bottomView.getPaint());
+
+            widgetLayout = li.inflate(R.layout.shade_widget_layout_google_sans, null);
+            topView = widgetLayout.findViewById(R.id.shadespace_text);
+            bottomView = widgetLayout.findViewById(R.id.shadespace_subtext);
+            mMeasureTopGSans.set(topView.getPaint());
+            mMeasureBottomGSans.set(bottomView.getPaint());
         }
 
         super.onReceive(context, intent);
@@ -67,7 +78,7 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
     }
 
     private void reload(Context context, AppWidgetManager appWidgetManager,
-                               int[] appWidgetIds, Bundle[] appWidgetOptions) {
+                        int[] appWidgetIds, Bundle[] appWidgetOptions) {
         Intent intent = new Intent(context, ShadeWidgetProvider.class);
 
         String top = "";
@@ -90,6 +101,9 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
             bottom = context.getString(R.string.title_change_settings);
         }
 
+        PendingIntent pi = PendingIntent.getBroadcast(context,
+                0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         Resources res = context.getResources();
         Configuration config = res.getConfiguration();
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -98,6 +112,8 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
         float titleSize = res.getDimension(R.dimen.smartspace_title_size);
         float textSize = res.getDimension(R.dimen.smartspace_text_size);
         float sidePadding = res.getDimension(R.dimen.widget_default_padding);
+
+        boolean useGoogleSans = ConfigurationActivity.useGoogleSans(context);
 
         for (int i = 0; i < appWidgetIds.length; i++) {
             int wDp = appWidgetOptions[i].getInt(
@@ -108,15 +124,18 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
             float wPx = TypedValue.applyDimension(COMPLEX_UNIT_DIP, wDp, dm) - 2 * sidePadding;
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-                    R.layout.shade_widget_layout);
+                    useGoogleSans ? R.layout.shade_widget_layout_google_sans : R.layout.shade_widget_layout);
 
-            setText(remoteViews, R.id.shadespace_text, wPx, top, titleSize, mMeasureTop);
-            setText(remoteViews, R.id.shadespace_subtext, wPx, bottom, textSize, mMeasureBottom);
+            // Top Line
+            setText(remoteViews, R.id.shadespace_text, wPx, top, titleSize,
+                    useGoogleSans ? mMeasureTopGSans : mMeasureTop);
 
-            PendingIntent pi = PendingIntent.getBroadcast(context,
-                    0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            // Bottom Line
+            setText(remoteViews, R.id.shadespace_subtext, wPx, bottom, textSize,
+                    useGoogleSans ? mMeasureBottomGSans : mMeasureBottom);
 
-            remoteViews.setOnClickPendingIntent(R.id.shadespace_text, pi);
+            // Redirect onClick
+            remoteViews.setOnClickPendingIntent(R.id.shadespace_content, pi);
             remoteViews.setOnClickPendingIntent(R.id.shadespace_subtext, pi);
 
             appWidgetManager.updateAppWidget(appWidgetIds[i], remoteViews);
@@ -124,7 +143,7 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
     }
 
     private static void setText(RemoteViews remoteViews, int viewId, float widthPx, String text,
-                                    float defaultTextSize, TextPaint measurePaint) {
+                                float defaultTextSize, TextPaint measurePaint) {
         double ratio = Math.min(1d, widthPx / measurePaint.measureText(text));
         remoteViews.setTextViewText(viewId, text);
         remoteViews.setTextViewTextSize(viewId,

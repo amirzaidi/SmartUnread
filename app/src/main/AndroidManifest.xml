@@ -18,6 +18,21 @@
         android:theme="@android:style/Theme.Material.Light"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <activity
+            android:name="amirz.plugin.unread.widget.ConfigurationActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/SettingsTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <service
             android:name="amirz.plugin.unread.UnreadService"
             android:enabled="true"

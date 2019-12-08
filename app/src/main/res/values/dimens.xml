@@ -4,9 +4,6 @@
     <dimen name="widget_min_width">240dp</dimen>
     <dimen name="widget_default_padding">8dp</dimen>
 
-    <!--<dimen name="smartspace_title_size">24sp</dimen>
-    <dimen name="smartspace_text_size">16sp</dimen>-->
-
     <dimen name="smartspace_title_size">24sp</dimen>
     <dimen name="smartspace_text_size">16sp</dimen>
 </resources>

@@ -9,7 +9,6 @@
         <item name="android:shadowDx">0.0</item>
         <item name="android:shadowDy">0.0</item>
         <item name="android:shadowRadius">10.0</item>
-        <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
     <style name="TextSubtitle">
@@ -21,7 +20,27 @@
         <item name="android:shadowDx">0.0</item>
         <item name="android:shadowDy">0.0</item>
         <item name="android:shadowRadius">9.0</item>
+    </style>
+
+    <style name="TextTitle.GoogleSans" parent="TextTitle">
         <item name="android:fontFamily">@font/google_sans</item>
+    </style>
+
+    <style name="TextSubtitle.GoogleSans" parent="TextSubtitle">
+        <item name="android:fontFamily">@font/google_sans</item>
+    </style>
+
+    <style name="SettingsTheme" parent="@android:style/Theme.Material.Settings">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:actionBarTheme">@style/SettingsTheme.ActionBar</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SettingsTheme.ActionBar">
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:colorControlNormal">@color/colorAccent</item>
     </style>
 
 </resources>
