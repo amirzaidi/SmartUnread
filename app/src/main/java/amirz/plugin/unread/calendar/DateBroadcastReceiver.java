@@ -23,17 +23,12 @@ public class DateBroadcastReceiver extends AutoRegisterReceiver {
         return filter;
     }
 
-    public void openCalendar() {
+    public Intent getCalendarIntent() {
         Uri.Builder timeUri = CalendarContract.CONTENT_URI.buildUpon().appendPath("time");
         ContentUris.appendId(timeUri, System.currentTimeMillis());
-        Intent intent = new Intent(Intent.ACTION_VIEW)
+        return new Intent(Intent.ACTION_VIEW)
                 .setData(timeUri.build())
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-        try {
-            mContext.startActivity(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

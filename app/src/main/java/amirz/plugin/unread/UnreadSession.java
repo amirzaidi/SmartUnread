@@ -1,13 +1,17 @@
 package amirz.plugin.unread;
 
+import android.app.ActivityOptions;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.service.notification.StatusBarNotification;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 
+import com.android.launcher3.Utilities;
 import com.android.launcher3.notification.NotificationInfo;
 import com.android.launcher3.notification.NotificationListener;
 
@@ -137,12 +141,8 @@ class UnreadSession {
                 PendingIntent pi = notif.intent;
                 mOnClick = () -> {
                     if (pi != null) {
-                        try {
-                            mLastClick = System.currentTimeMillis();
-                            pi.send();
-                        } catch (PendingIntent.CanceledException e) {
-                            e.printStackTrace();
-                        }
+                        mLastClick = System.currentTimeMillis();
+                        startPendingIntent(pi);
                     }
                 };
                 if (!textList.contains(app)) {
@@ -153,7 +153,7 @@ class UnreadSession {
         }
 
         // 3. Calendar event
-        mOnClick = mDateReceiver::openCalendar;
+        mOnClick = () -> startIntent(mDateReceiver.getCalendarIntent());
         CalendarParser.Event event = CalendarParser.getEvent(mContext);
         if (event != null) {
             textList.add(event.name);
@@ -189,6 +189,31 @@ class UnreadSession {
         }
 
         return textList;
+    }
+
+    private void startIntent(Intent intent) {
+        try {
+            mContext.startActivity(intent, getLaunchOptions());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void startPendingIntent(PendingIntent pi) {
+        try {
+            if (Utilities.ATLEAST_MARSHMALLOW) {
+                pi.send(null, 0, null, null, null, null, getLaunchOptions());
+            } else {
+                pi.send();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Bundle getLaunchOptions() {
+        return ActivityOptions.makeCustomAnimation(mContext,
+                R.anim.enter_app, R.anim.exit_launcher).toBundle();
     }
 
     private void reload() {
