@@ -24,7 +24,7 @@ import android.view.View;
 
 import com.android.launcher3.util.PackageUserKey;
 
-public class NotificationInfo implements View.OnClickListener {
+public class NotificationInfo {
 
     public final PackageUserKey packageUserKey;
     public final String notificationKey;
@@ -47,32 +47,5 @@ public class NotificationInfo implements View.OnClickListener {
         intent = notification.contentIntent;
         autoCancel = (notification.flags & Notification.FLAG_AUTO_CANCEL) != 0;
         dismissable = (notification.flags & Notification.FLAG_ONGOING_EVENT) == 0;
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (intent == null) {
-            return;
-        }
-
-        /*
-        final Launcher launcher = Launcher.getLauncher(view.getContext());
-        try {
-            if (Utilities.ATLEAST_MARSHMALLOW) {
-                Bundle activityOptions = launcher.getActivityLaunchOptionsAsBundle(view);
-                intent.send(null, 0, null, null, null, null, activityOptions);
-            } else {
-                intent.send();
-            }
-            launcher.getUserEventDispatcher().logNotificationLaunch(view, intent);
-        } catch (PendingIntent.CanceledException e) {
-            e.printStackTrace();
-        }
-        if (autoCancel) {
-            launcher.getPopupDataProvider().cancelNotification(notificationKey);
-        }
-        AbstractFloatingView.closeOpenContainer(launcher, AbstractFloatingView
-                .TYPE_ACTION_POPUP);
-         */
     }
 }

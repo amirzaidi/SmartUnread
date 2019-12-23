@@ -16,10 +16,8 @@
 
 package com.android.launcher3;
 
-import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import android.os.Process;
 
 /**
  * Maintains in-memory state of the Launcher. It is expected that there should be only one
@@ -27,22 +25,15 @@ import android.os.Process;
  * for the Launcher.
  */
 public class LauncherModel {
-    static final String TAG = "Launcher.Model";
-
     static final HandlerThread sWorkerThread = new HandlerThread("launcher-loader");
     static {
         sWorkerThread.start();
     }
-    static final Handler sWorker = new Handler(sWorkerThread.getLooper());
 
     /**
      * @return the looper for the worker thread which can be used to start background tasks.
      */
     public static Looper getWorkerLooper() {
         return sWorkerThread.getLooper();
-    }
-
-    public static void setWorkerPriority(final int priority) {
-        Process.setThreadPriority(sWorkerThread.getThreadId(), priority);
     }
 }
