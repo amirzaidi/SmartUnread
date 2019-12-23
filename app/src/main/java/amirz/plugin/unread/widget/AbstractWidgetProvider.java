@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import amirz.plugin.unread.UnreadService;
+import amirz.plugin.unread.settings.ConfigurationActivity;
 import amirz.smartunread.R;
 
 import static android.util.TypedValue.COMPLEX_UNIT_DIP;

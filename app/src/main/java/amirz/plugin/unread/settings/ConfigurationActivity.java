@@ -1,4 +1,4 @@
-package amirz.plugin.unread.widget;
+package amirz.plugin.unread.settings;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.preference.SwitchPreference;
 
 import com.android.launcher3.Utilities;
 
+import amirz.plugin.unread.widget.AbstractWidgetProvider;
 import amirz.smartunread.R;
 
 public class ConfigurationActivity extends Activity {

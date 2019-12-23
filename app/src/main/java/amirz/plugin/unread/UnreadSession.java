@@ -25,7 +25,7 @@ import amirz.plugin.unread.media.MediaListener;
 import amirz.plugin.unread.notifications.NotificationList;
 import amirz.plugin.unread.notifications.NotificationRanker;
 import amirz.plugin.unread.notifications.ParsedNotification;
-import amirz.plugin.unread.widget.ConfigurationActivity;
+import amirz.plugin.unread.settings.ConfigurationActivity;
 import amirz.plugin.unread.widget.AbstractWidgetProvider;
 import amirz.smartunread.R;
 

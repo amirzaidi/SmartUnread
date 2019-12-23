@@ -19,7 +19,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name="amirz.plugin.unread.widget.ConfigurationActivity"
+            android:name="amirz.plugin.unread.settings.ConfigurationActivity"
             android:label="@string/activity_name"
             android:theme="@style/SettingsTheme">
 
