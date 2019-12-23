@@ -23,4 +23,6 @@
     <string name="pref_silent_notifs_desc">Also show low priority notifications</string>
     <string name="widget_style_shade">Shade Style</string>
     <string name="widget_style_oxygen">Oxygen Style</string>
+    <string name="pref_greeting">Custom greeting message</string>
+    <string name="pref_greeting_desc">Displayed when there is no information to show</string>
 </resources>

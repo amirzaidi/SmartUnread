@@ -46,6 +46,11 @@
             android:summary="@string/pref_silent_notifs_desc"
             android:defaultValue="true" />
 
+        <amirz.library.settings.TextPreference
+            android:key="pref_greeting"
+            android:title="@string/pref_greeting"
+            android:summary="@string/pref_greeting_desc" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

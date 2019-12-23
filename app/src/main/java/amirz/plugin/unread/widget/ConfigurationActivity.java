@@ -17,12 +17,14 @@ public class ConfigurationActivity extends Activity {
     private static final String CURRENT_DATE = "pref_current_date";
     private static final String CHARGING_PERC = "pref_charging_perc";
     private static final String SILENT_NOTIFS = "pref_silent_notifs";
+    private static final String GREETING = "pref_greeting";
 
     private static final String[] PREFS = {
             USE_GOOGLE_SANS,
             CURRENT_DATE,
             CHARGING_PERC,
-            SILENT_NOTIFS
+            SILENT_NOTIFS,
+            GREETING
     };
 
     @Override
@@ -89,6 +91,10 @@ public class ConfigurationActivity extends Activity {
 
     public static boolean silentNotifs(Context context) {
         return getPrefs(context).getBoolean(SILENT_NOTIFS, true);
+    }
+
+    public static String greeting(Context context) {
+        return getPrefs(context).getString(GREETING, "");
     }
 
     private static SharedPreferences getPrefs(Context context) {

@@ -179,6 +179,11 @@ class UnreadSession {
             }
         }
 
+        String greeting = ConfigurationActivity.greeting(mContext);
+        if (!TextUtils.isEmpty(greeting) && textList.size() <= 1) {
+            textList.add(greeting);
+        }
+
         return textList;
     }
 
