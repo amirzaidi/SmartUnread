@@ -1,6 +1,20 @@
 <resources>
+    <style name="Text">
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
 
-    <style name="TextTitle">
+    <style name="TextTitle" parent="Text">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextSubtitle" parent="Text">
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="TextTitleShade" parent="TextTitle">
         <item name="android:textSize">@dimen/smartspace_title_size</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:paddingLeft">@dimen/text_horizontal_padding</item>
@@ -11,7 +25,7 @@
         <item name="android:shadowRadius">10.0</item>
     </style>
 
-    <style name="TextSubtitle">
+    <style name="TextSubtitleShade" parent="TextSubtitle">
         <item name="android:textSize">@dimen/smartspace_text_size</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:paddingLeft">@dimen/text_horizontal_padding</item>
@@ -20,13 +34,45 @@
         <item name="android:shadowDx">0.0</item>
         <item name="android:shadowDy">0.0</item>
         <item name="android:shadowRadius">9.0</item>
+        <item name="android:maxLines">1</item>
     </style>
 
-    <style name="TextTitle.GoogleSans" parent="TextTitle">
+    <style name="TextTitleShade.GoogleSans" parent="TextTitleShade">
         <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
-    <style name="TextSubtitle.GoogleSans" parent="TextSubtitle">
+    <style name="TextSubtitleShade.GoogleSans" parent="TextSubtitleShade">
+        <item name="android:fontFamily">@font/google_sans</item>
+    </style>
+
+    <style name="TextTitleOxygen" parent="TextTitle">
+        <item name="android:textSize">@dimen/smartspace_title_size</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:paddingLeft">@dimen/text_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/text_horizontal_padding</item>
+
+        <item name="android:shadowColor">#66000000</item>
+        <item name="android:shadowDy">5.25</item>
+        <item name="android:shadowRadius">6</item>
+
+    </style>
+
+    <style name="TextSubtitleOxygen" parent="TextSubtitle">
+        <item name="android:textSize">@dimen/smartspace_text_size</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:paddingLeft">@dimen/text_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/text_horizontal_padding</item>
+
+        <item name="android:shadowColor">#66000000</item>
+        <item name="android:shadowDy">5.25</item>
+        <item name="android:shadowRadius">6</item>
+    </style>
+
+    <style name="TextTitleOxygen.GoogleSans" parent="TextTitleOxygen">
+        <item name="android:fontFamily">@font/google_sans</item>
+    </style>
+
+    <style name="TextSubtitleOxygen.GoogleSans" parent="TextSubtitleOxygen">
         <item name="android:fontFamily">@font/google_sans</item>
     </style>
 

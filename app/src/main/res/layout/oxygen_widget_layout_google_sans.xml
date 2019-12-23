@@ -13,7 +13,7 @@
         android:layout_height="16dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        style="@style/TextTitleShade" />
+        style="@style/TextTitleOxygen.GoogleSans" />
 
     <TextView
         android:id="@+id/shadespace_subtext"
@@ -21,6 +21,6 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        style="@style/TextSubtitleShade" />
+        style="@style/TextSubtitleOxygen.GoogleSans" />
 
 </LinearLayout>

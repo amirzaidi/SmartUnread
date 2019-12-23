@@ -43,7 +43,8 @@
             </intent-filter>
         </service>
 
-        <receiver android:name="amirz.plugin.unread.widget.ShadeWidgetProvider">
+        <receiver android:name="amirz.plugin.unread.widget.ShadeWidgetProvider"
+            android:label="@string/widget_style_shade">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -51,6 +52,17 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/shade_widget_info" />
+        </receiver>
+
+        <receiver android:name="amirz.plugin.unread.widget.OxygenWidgetProvider"
+            android:label="@string/widget_style_oxygen">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/oxygen_widget_info" />
         </receiver>
     </application>
 

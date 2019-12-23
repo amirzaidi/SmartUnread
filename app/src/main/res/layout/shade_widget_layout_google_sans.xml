@@ -13,13 +13,7 @@
         android:layout_height="16dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:paddingTop="8dp"
-        android:scrollHorizontally="true"
-        android:textSize="@dimen/smartspace_title_size"
-        style="@style/TextTitle.GoogleSans" />
+        style="@style/TextTitleShade.GoogleSans" />
 
     <TextView
         android:id="@+id/shadespace_subtext"
@@ -27,11 +21,6 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:ellipsize="end"
-        android:gravity="center_horizontal"
-        android:maxLines="1"
-        android:scrollHorizontally="true"
-        android:textSize="@dimen/smartspace_text_size"
-        style="@style/TextSubtitle.GoogleSans" />
+        style="@style/TextSubtitleShade.GoogleSans" />
 
 </LinearLayout>

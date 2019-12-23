@@ -69,7 +69,7 @@ public class ConfigurationActivity extends Activity {
 
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-            ShadeWidgetProvider.updateAll(mContext);
+            AbstractWidgetProvider.updateAll(mContext);
             return true;
         }
     }

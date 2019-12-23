@@ -21,4 +21,6 @@
     <string name="pref_charging_perc_desc">Show the battery percentage while charging</string>
     <string name="pref_silent_notifs">All notifications</string>
     <string name="pref_silent_notifs_desc">Also show low priority notifications</string>
+    <string name="widget_style_shade">Shade Style</string>
+    <string name="widget_style_oxygen">Oxygen Style</string>
 </resources>

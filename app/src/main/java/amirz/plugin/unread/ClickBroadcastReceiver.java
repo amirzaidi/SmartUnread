@@ -3,7 +3,7 @@ package amirz.plugin.unread;
 import android.content.Context;
 import android.content.IntentFilter;
 
-import static amirz.plugin.unread.widget.ShadeWidgetProvider.ACTION_PRESS;
+import static amirz.plugin.unread.widget.AbstractWidgetProvider.ACTION_PRESS;
 
 public class ClickBroadcastReceiver extends AutoRegisterReceiver {
     public ClickBroadcastReceiver(Context context, Runnable onReceive) {

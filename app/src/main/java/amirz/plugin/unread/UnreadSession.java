@@ -12,7 +12,6 @@ import android.text.TextUtils;
 import android.text.format.DateUtils;
 
 import com.android.launcher3.Utilities;
-import com.android.launcher3.notification.NotificationInfo;
 import com.android.launcher3.notification.NotificationListener;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ import amirz.plugin.unread.notifications.NotificationList;
 import amirz.plugin.unread.notifications.NotificationRanker;
 import amirz.plugin.unread.notifications.ParsedNotification;
 import amirz.plugin.unread.widget.ConfigurationActivity;
-import amirz.plugin.unread.widget.ShadeWidgetProvider;
+import amirz.plugin.unread.widget.AbstractWidgetProvider;
 import amirz.smartunread.R;
 
 class UnreadSession {
@@ -231,7 +230,7 @@ class UnreadSession {
 
     private void reload() {
         long delayTime = Math.max(0, NOTIF_UPDATE_DELAY + mLastClick - System.currentTimeMillis());
-        mHandler.postDelayed(() -> ShadeWidgetProvider.updateAll(mContext), delayTime);
+        mHandler.postDelayed(() -> AbstractWidgetProvider.updateAll(mContext), delayTime);
     }
 
     private CharSequence getApp(String name) {
