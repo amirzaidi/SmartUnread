@@ -16,7 +16,7 @@
     </style>
 
     <style name="TextTitleShade" parent="TextTitle">
-        <item name="android:textSize">@dimen/smartspace_title_size</item>
+        <item name="android:textSize">@dimen/smartspace_title_size_shade</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:paddingLeft">@dimen/text_horizontal_padding</item>
         <item name="android:paddingRight">@dimen/text_horizontal_padding</item>
@@ -28,7 +28,7 @@
     </style>
 
     <style name="TextSubtitleShade" parent="TextSubtitle">
-        <item name="android:textSize">@dimen/smartspace_text_size</item>
+        <item name="android:textSize">@dimen/smartspace_text_size_shade</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:paddingLeft">@dimen/text_horizontal_padding</item>
         <item name="android:paddingRight">@dimen/text_horizontal_padding</item>
@@ -49,7 +49,7 @@
     </style>
 
     <style name="TextTitleOxygen" parent="TextTitle">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/smartspace_title_size_oxygen</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:paddingLeft">@dimen/text_horizontal_padding_oxygen</item>
         <item name="android:paddingRight">@dimen/text_horizontal_padding_oxygen</item>
@@ -62,7 +62,7 @@
     </style>
 
     <style name="TextSubtitleOxygen" parent="TextSubtitle">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/smartspace_text_size_oxygen</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:paddingLeft">@dimen/text_horizontal_padding_oxygen</item>
         <item name="android:paddingRight">@dimen/text_horizontal_padding_oxygen</item>
@@ -71,7 +71,7 @@
         <item name="android:shadowDy">5.25</item>
         <item name="android:shadowRadius">6</item>
 
-        <item name="android:gravity">bottom</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="TextTitleOxygen.GoogleSans" parent="TextTitleOxygen">

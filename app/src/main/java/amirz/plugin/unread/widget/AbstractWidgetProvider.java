@@ -11,6 +11,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,8 +108,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         DisplayMetrics dm = res.getDisplayMetrics();
         int orientation = config.orientation;
 
-        float titleSize = res.getDimension(R.dimen.smartspace_title_size);
-        float textSize = res.getDimension(R.dimen.smartspace_text_size);
+        float titleSize = res.getDimension(getDefaultTitleSize());
+        float textSize = res.getDimension(getDefaultTextSize());
         float sidePadding = res.getDimension(R.dimen.widget_default_padding)
                 + res.getDimension(R.dimen.text_horizontal_padding);
 
@@ -180,4 +181,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     }
 
     abstract int getLayoutId(boolean useGoogleSans);
+
+    abstract int getDefaultTitleSize();
+
+    abstract int getDefaultTextSize();
 }

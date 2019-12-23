@@ -4,9 +4,13 @@
     <dimen name="widget_min_width">240dp</dimen>
     <dimen name="widget_default_padding">8dp</dimen>
 
-    <dimen name="smartspace_title_size">24sp</dimen>
-    <dimen name="smartspace_text_size">16sp</dimen>
+    <dimen name="smartspace_title_size_shade">24sp</dimen>
+    <dimen name="smartspace_text_size_shade">16sp</dimen>
+
+    <dimen name="smartspace_title_size_oxygen">26sp</dimen>
+    <dimen name="smartspace_text_size_oxygen">17sp</dimen>W
+
 
     <dimen name="text_horizontal_padding">4dp</dimen>
-    <dimen name="text_horizontal_padding_oxygen">7dp</dimen>
+    <dimen name="text_horizontal_padding_oxygen">6dp</dimen>
 </resources>
