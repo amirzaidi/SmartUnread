@@ -25,6 +25,7 @@ public class ConfigurationActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.activity_title);
 
         getFragmentManager()
                 .beginTransaction()
