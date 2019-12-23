@@ -1,4 +1,4 @@
-package amirz.plugin.unread;
+package amirz.plugin.unread.calendar;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -12,11 +12,11 @@ import com.android.launcher3.Utilities;
 
 import static android.Manifest.permission.READ_CALENDAR;
 
-class CalendarParser {
-    static class Event {
-        final String name;
-        final Calendar start;
-        final Calendar end;
+public class CalendarParser {
+    public static class Event {
+        public final String name;
+        public final Calendar start;
+        public final Calendar end;
 
         private Event(Cursor cursor) {
             name = cursor.getString(0);
@@ -28,7 +28,7 @@ class CalendarParser {
         }
     }
 
-    static Event getEvent(Context context) {
+    public static Event getEvent(Context context) {
         if (Utilities.ATLEAST_MARSHMALLOW
                 && context.checkSelfPermission(READ_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             return null;

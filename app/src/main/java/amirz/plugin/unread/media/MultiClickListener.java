@@ -1,4 +1,4 @@
-package amirz.plugin.unread;
+package amirz.plugin.unread.media;
 
 import android.os.Handler;
 
@@ -22,7 +22,7 @@ class MultiClickListener implements Runnable {
         }
     }
 
-    public void onClick() {
+    void onClick() {
         if (mListeners.length > 0) {
             // Intermediate click callback.
             mListeners[mUnprocessedTaps++].onClick(false);

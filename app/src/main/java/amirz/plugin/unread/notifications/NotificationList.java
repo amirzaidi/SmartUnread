@@ -1,4 +1,4 @@
-package amirz.plugin.unread;
+package amirz.plugin.unread.notifications;
 
 import android.service.notification.StatusBarNotification;
 
@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class NotificationList implements NotificationListener.NotificationsChangedListener {
+public class NotificationList implements NotificationListener.NotificationsChangedListener {
     private final Runnable mOnNotificationsChanged;
     private final List<NotificationKeyData> mNotifications = new ArrayList<>();
 
-    NotificationList(Runnable onNotificationsChanged) {
+    public NotificationList(Runnable onNotificationsChanged) {
         mOnNotificationsChanged = onNotificationsChanged;
     }
 
-    boolean hasNotifications() {
+    public boolean hasNotifications() {
         return !mNotifications.isEmpty();
     }
 
-    List<NotificationKeyData> getKeys() {
+    public List<NotificationKeyData> getKeys() {
         return Collections.unmodifiableList(mNotifications);
     }
 

@@ -1,20 +1,21 @@
-package amirz.plugin.unread;
+package amirz.plugin.unread.calendar;
 
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.CalendarContract;
 
-class DateBroadcastReceiver extends AutoRegisterReceiver {
-    DateBroadcastReceiver(Context context, Runnable onReceive) {
+import amirz.plugin.unread.AutoRegisterReceiver;
+
+public class DateBroadcastReceiver extends AutoRegisterReceiver {
+    public DateBroadcastReceiver(Context context, Runnable onReceive) {
         super(context, onReceive);
     }
 
     @Override
-    IntentFilter getFilter() {
+    public IntentFilter getFilter() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
@@ -22,7 +23,7 @@ class DateBroadcastReceiver extends AutoRegisterReceiver {
         return filter;
     }
 
-    void openCalendar() {
+    public void openCalendar() {
         Uri.Builder timeUri = CalendarContract.CONTENT_URI.buildUpon().appendPath("time");
         ContentUris.appendId(timeUri, System.currentTimeMillis());
         Intent intent = new Intent(Intent.ACTION_VIEW)

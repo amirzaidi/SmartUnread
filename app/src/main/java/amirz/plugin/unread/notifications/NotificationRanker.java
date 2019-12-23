@@ -1,4 +1,4 @@
-package amirz.plugin.unread;
+package amirz.plugin.unread.notifications;
 
 import android.app.Notification;
 import android.service.notification.StatusBarNotification;
@@ -9,15 +9,15 @@ import java.util.List;
 import static android.app.Notification.PRIORITY_DEFAULT;
 import static android.app.Notification.PRIORITY_MIN;
 
-class NotificationRanker {
+public class NotificationRanker {
     private static final int PRIORITY_AT_LEAST = PRIORITY_DEFAULT;
     private final List<StatusBarNotification> mSbn;
 
-    NotificationRanker(List<StatusBarNotification> sbn) {
+    public NotificationRanker(List<StatusBarNotification> sbn) {
         mSbn = sbn;
     }
 
-    RankedNotification getBestNotification() {
+    public RankedNotification getBestNotification() {
         int bestPriority = PRIORITY_MIN;
         StatusBarNotification bestNotif = null;
         for (StatusBarNotification n : mSbn) {
@@ -42,9 +42,9 @@ class NotificationRanker {
                 : new RankedNotification(bestNotif, bestPriority >= PRIORITY_AT_LEAST);
     }
 
-    static class RankedNotification {
-        final StatusBarNotification sbn;
-        final boolean important;
+    public static class RankedNotification {
+        public final StatusBarNotification sbn;
+        public final boolean important;
 
         private RankedNotification(StatusBarNotification sbn, boolean important) {
             this.sbn = sbn;

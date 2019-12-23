@@ -1,4 +1,4 @@
-package amirz.plugin.unread;
+package amirz.plugin.unread.media;
 
 import android.app.Notification;
 import android.content.ComponentName;
@@ -9,17 +9,17 @@ import android.media.session.MediaSession;
 import android.media.session.MediaSessionManager;
 import android.media.session.PlaybackState;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.service.notification.StatusBarNotification;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 
 import com.android.launcher3.Utilities;
-import com.android.launcher3.notification.NotificationListener;
 
 import java.util.Collections;
 import java.util.List;
+
+import amirz.plugin.unread.UnreadService;
 
 /**
  * Paused mode is not supported on Marshmallow because the MediaSession is missing
@@ -29,21 +29,26 @@ public class MediaListener extends MediaController.Callback
         implements MediaSessionManager.OnActiveSessionsChangedListener {
     private static final String TAG = "MediaListener";
 
+    private static final int MULTI_CLICK_DELAY = 300;
+
     private final ComponentName mComponent;
     private final MediaSessionManager mManager;
     private final List<StatusBarNotification> mSbn;
     private final Runnable mOnChange;
     private List<MediaController> mControllers = Collections.emptyList();
     private MediaController mTracking;
+    private final MultiClickListener mTaps;
 
-    MediaListener(Context context, List<StatusBarNotification> sbn, Runnable onChange) {
+    public MediaListener(Context context, List<StatusBarNotification> sbn, Runnable onChange) {
         mComponent = new ComponentName(context, UnreadService.class);
         mManager = (MediaSessionManager) context.getSystemService(Context.MEDIA_SESSION_SERVICE);
         mSbn = sbn;
         mOnChange = onChange;
+        mTaps = new MultiClickListener(MULTI_CLICK_DELAY);
+        mTaps.setListeners(this::toggle, this::next, this::previous);
     }
 
-    void onResume() {
+    public void onResume() {
         try {
             mManager.addOnActiveSessionsChangedListener(this, mComponent);
         } catch (SecurityException e) {
@@ -52,28 +57,28 @@ public class MediaListener extends MediaController.Callback
         onActiveSessionsChanged(null); // Bind all current controllers.
     }
 
-    void onPause() {
+    public void onPause() {
         mManager.removeOnActiveSessionsChangedListener(this);
         onActiveSessionsChanged(Collections.<MediaController>emptyList()); // Unbind all previous controllers.
     }
 
-    boolean isTracking() {
+    public boolean isTracking() {
         return mTracking != null;
     }
 
-    CharSequence getTitle() {
+    public CharSequence getTitle() {
         return mTracking.getMetadata().getText(MediaMetadata.METADATA_KEY_TITLE);
     }
 
-    CharSequence getArtist() {
+    public CharSequence getArtist() {
         return mTracking.getMetadata().getText(MediaMetadata.METADATA_KEY_ARTIST);
     }
 
-    CharSequence getAlbum() {
+    public CharSequence getAlbum() {
         return mTracking.getMetadata().getText(MediaMetadata.METADATA_KEY_ALBUM);
     }
 
-    String getPackage() {
+    public String getPackage() {
         return mTracking.getPackageName();
     }
 
@@ -125,14 +130,18 @@ public class MediaListener extends MediaController.Callback
         }
     }
 
-    void toggle(boolean finalClick) {
+    public void onClick() {
+        mTaps.onClick();
+    }
+
+    private void toggle(boolean finalClick) {
         if (Utilities.ATLEAST_NOUGAT && !finalClick) {
             Log.d(TAG, "Toggle");
             pressButton(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
         }
     }
 
-    void next(boolean finalClick) {
+    private void next(boolean finalClick) {
         if (finalClick) {
             Log.d(TAG, "Next");
             pressButton(KeyEvent.KEYCODE_MEDIA_NEXT);
@@ -140,7 +149,7 @@ public class MediaListener extends MediaController.Callback
         }
     }
 
-    void previous(boolean finalClick) {
+    private void previous(boolean finalClick) {
         if (finalClick) {
             Log.d(TAG, "Previous");
             pressButton(KeyEvent.KEYCODE_MEDIA_PREVIOUS);

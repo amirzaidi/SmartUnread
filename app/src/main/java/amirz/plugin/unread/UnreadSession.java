@@ -15,11 +15,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import amirz.plugin.unread.calendar.CalendarParser;
+import amirz.plugin.unread.calendar.CalendarReceiver;
+import amirz.plugin.unread.calendar.DateBroadcastReceiver;
+import amirz.plugin.unread.media.MediaListener;
+import amirz.plugin.unread.notifications.NotificationList;
+import amirz.plugin.unread.notifications.NotificationRanker;
 import amirz.plugin.unread.widget.ShadeWidgetProvider;
 import amirz.smartunread.R;
 
 class UnreadSession {
-    private static final int MULTI_CLICK_DELAY = 300;
     private static final int NOTIF_UPDATE_DELAY = 750;
 
     private final Context mContext;
@@ -30,7 +35,6 @@ class UnreadSession {
     private final NotificationList mNotifications = new NotificationList(this::onNotificationsChanged);
 
     private final MediaListener mMedia;
-    private final MultiClickListener mTaps;
 
     private final ClickBroadcastReceiver mPressReceiver;
     private final DateBroadcastReceiver mDateReceiver;
@@ -51,8 +55,6 @@ class UnreadSession {
         mContext = context;
 
         mMedia = new MediaListener(context, mSbn, this::reload);
-        mTaps = new MultiClickListener(MULTI_CLICK_DELAY);
-        mTaps.setListeners(mMedia::toggle, mMedia::next, mMedia::previous);
 
         mPressReceiver = new ClickBroadcastReceiver(context, () -> mOnClick.onClick());
         mDateReceiver = new DateBroadcastReceiver(context, this::reload);
@@ -101,7 +103,7 @@ class UnreadSession {
                     textList.add(album.toString());
                 }
             }
-            mOnClick = mTaps::onClick;
+            mOnClick = mMedia::onClick;
             return textList;
         }
 
