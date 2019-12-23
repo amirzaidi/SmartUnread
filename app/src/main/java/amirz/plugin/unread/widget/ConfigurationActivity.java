@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
+
+import com.android.launcher3.Utilities;
 
 import amirz.smartunread.R;
 
@@ -45,6 +48,12 @@ public class ConfigurationActivity extends Activity {
             getPreferenceManager().setSharedPreferencesName(mContext.getPackageName());
             addPreferencesFromResource(R.xml.preferences);
 
+            if (!Utilities.ATLEAST_OREO) {
+                SwitchPreference googleSans = (SwitchPreference) findPreference(USE_GOOGLE_SANS);
+                googleSans.setChecked(false);
+                googleSans.setEnabled(false);
+            }
+
             for (String pref : PREFS) {
                 findPreference(pref).setOnPreferenceChangeListener(this);
             }
@@ -66,7 +75,8 @@ public class ConfigurationActivity extends Activity {
     }
 
     public static boolean useGoogleSans(Context context) {
-        return getPrefs(context).getBoolean(USE_GOOGLE_SANS, true);
+        return getPrefs(context).getBoolean(USE_GOOGLE_SANS, true)
+                && Utilities.ATLEAST_OREO;
     }
 
     public static boolean currentDate(Context context) {
