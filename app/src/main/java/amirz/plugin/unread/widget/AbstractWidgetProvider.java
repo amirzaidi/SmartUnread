@@ -78,7 +78,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private void reload(Context context, AppWidgetManager appWidgetManager,
                         int[] appWidgetIds, Bundle[] appWidgetOptions) {
-        Intent intent = new Intent(context, AbstractWidgetProvider.class);
+        Intent intent = new Intent(context, getClass());
 
         String top = "";
         String bottom = "";
