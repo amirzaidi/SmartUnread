@@ -143,8 +143,11 @@ class UnreadSession {
         // 4. Battery charging text
         if (ConfigurationActivity.chargingPerc(mContext) && mBatteryReceiver.isCharging()) {
             mOnClick = () -> startIntent(new Intent(Intent.ACTION_POWER_USAGE_SUMMARY));
-            textList.add(mContext.getString(R.string.shadespace_text_charging,
-                    mBatteryReceiver.getLevel()));
+            int lvl = mBatteryReceiver.getLevel();
+            textList.add(lvl == 100
+                    ? mContext.getString(R.string.shadespace_text_charged)
+                    : mContext.getString(R.string.shadespace_text_charging,
+                        mBatteryReceiver.getLevel()));
         }
         // 5. Date (Reuse open calendar onClick)
         if (ConfigurationActivity.currentDate(mContext)) {
