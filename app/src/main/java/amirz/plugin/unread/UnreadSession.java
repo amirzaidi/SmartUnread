@@ -25,6 +25,8 @@ import amirz.plugin.unread.calendar.DateBroadcastReceiver;
 import amirz.plugin.unread.media.MediaListener;
 import amirz.plugin.unread.notifications.NotificationList;
 import amirz.plugin.unread.notifications.NotificationRanker;
+import amirz.plugin.unread.notifications.ParsedNotification;
+import amirz.plugin.unread.widget.ConfigurationActivity;
 import amirz.plugin.unread.widget.ShadeWidgetProvider;
 import amirz.smartunread.R;
 
@@ -112,48 +114,21 @@ class UnreadSession {
         }
 
         NotificationRanker.RankedNotification ranked = mRanker.getBestNotification();
-
-        String app = null;
-        String[] splitTitle = null;
-        String body = null;
+        ParsedNotification parsed = null;
 
         // 2. High priority notification
         if (ranked != null) {
-            NotificationInfo notif = new NotificationInfo(mContext, ranked.sbn);
-            app = getApp(notif.packageUserKey.mPackageName).toString();
-            String title = notif.title == null
-                    ? ""
-                    : notif.title.toString();
-            splitTitle = splitTitle(title);
-            body = notif.text == null
-                    ? ""
-                    : notif.text.toString().trim().split("\n")[0]; // First line
-
+            parsed = new ParsedNotification(mContext, ranked.sbn);
             if (ranked.important) {
-                // Body on top if it is not empty.
-                if (!TextUtils.isEmpty(body)) {
-                    textList.add(body);
-                }
-                for (int i = splitTitle.length - 1; i >= 0; i--) {
-                    textList.add(splitTitle[i]);
-                }
-
-                PendingIntent pi = notif.intent;
-                mOnClick = () -> {
-                    if (pi != null) {
-                        mLastClick = System.currentTimeMillis();
-                        startPendingIntent(pi);
-                    }
-                };
-                if (!textList.contains(app)) {
-                    textList.add(app);
-                }
+                addImportantNotification(textList, parsed);
                 return textList;
             }
         }
 
         // 3. Calendar event
-        mOnClick = () -> startIntent(mDateReceiver.getCalendarIntent());
+        UnreadSession.OnClickListener openCalendar =
+                () -> startIntent(mDateReceiver.getCalendarIntent());
+        mOnClick = openCalendar;
         CalendarParser.Event event = CalendarParser.getEvent(mContext);
         if (event != null) {
             textList.add(event.name);
@@ -166,34 +141,72 @@ class UnreadSession {
             return textList;
         }
 
-        // 4. Date (Reuse open calendar onClick)
-        textList.add(DateUtils.formatDateTime(mContext, System.currentTimeMillis(),
-                DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_DATE));
-
-        // 4a. With battery charging text
-        if (mBatteryReceiver.isCharging()) {
-            textList.add(mContext.getString(R.string.shadespace_subtext_charging,
+        // 4. Battery charging text
+        if (ConfigurationActivity.chargingPerc(mContext) && mBatteryReceiver.isCharging()) {
+            mOnClick = () -> startIntent(new Intent(Intent.ACTION_POWER_USAGE_SUMMARY));
+            textList.add(mContext.getString(R.string.shadespace_text_charging,
                     mBatteryReceiver.getLevel()));
         }
-        // 4b. With normal notification
-        else if (ranked != null) {
-            for (int i = splitTitle.length - 1; i >= 0; i--) {
-                textList.add(splitTitle[i]);
-            }
-            if (!TextUtils.isEmpty(body)) {
-                textList.add(body);
-            }
-            if (!textList.contains(app)) {
-                textList.add(app);
+        // 5. Date (Reuse open calendar onClick)
+        if (ConfigurationActivity.currentDate(mContext)) {
+            mOnClick = openCalendar;
+            textList.add(DateUtils.formatDateTime(mContext, System.currentTimeMillis(),
+                    DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_DATE));
+        }
+
+        // 6. Low priority notification.
+        if (parsed != null && ConfigurationActivity.silentNotifs(mContext)) {
+            if (textList.isEmpty()) {
+                addImportantNotification(textList, parsed);
+            } else {
+                // Remove all except top level.
+                while (textList.size() > 1) {
+                    textList.remove(textList.size() - 1);
+                }
+
+                for (int i = parsed.splitTitle.length - 1; i >= 0; i--) {
+                    textList.add(parsed.splitTitle[i]);
+                }
+                if (!TextUtils.isEmpty(parsed.body)) {
+                    textList.add(parsed.body);
+                }
+                String app = getApp(parsed.pkg).toString();
+                if (!textList.contains(app)) {
+                    textList.add(app);
+                }
             }
         }
 
         return textList;
     }
 
+    private void addImportantNotification(List<String> textList, ParsedNotification parsed) {
+        // Body on top if it is not empty.
+        if (!TextUtils.isEmpty(parsed.body)) {
+            textList.add(parsed.body);
+        }
+        for (int i = parsed.splitTitle.length - 1; i >= 0; i--) {
+            textList.add(parsed.splitTitle[i]);
+        }
+
+        mOnClick = () -> {
+            if (parsed.pi != null) {
+                mLastClick = System.currentTimeMillis();
+                startPendingIntent(parsed.pi);
+            }
+        };
+        String app = getApp(parsed.pkg).toString();
+        if (!textList.contains(app)) {
+            textList.add(app);
+        }
+    }
+
     private void startIntent(Intent intent) {
         try {
-            mContext.startActivity(intent, getLaunchOptions());
+            mContext.startActivity(intent.addFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK
+                            | Intent.FLAG_ACTIVITY_CLEAR_TASK),
+                    getLaunchOptions());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -219,16 +232,6 @@ class UnreadSession {
     private void reload() {
         long delayTime = Math.max(0, NOTIF_UPDATE_DELAY + mLastClick - System.currentTimeMillis());
         mHandler.postDelayed(() -> ShadeWidgetProvider.updateAll(mContext), delayTime);
-    }
-
-    private String[] splitTitle(String title) {
-        final String[] delimiters = { ": ", " - ", " • " };
-        for (String del : delimiters) {
-            if (title.contains(del)) {
-                return title.split(del, 2);
-            }
-        }
-        return new String[] { title };
     }
 
     private CharSequence getApp(String name) {

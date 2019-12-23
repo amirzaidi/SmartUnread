@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Smart Unread</string>
 
-    <string name="shadespace_subtext_default">Welcome home</string>
-    <string name="shadespace_subtext_charging">Battery has charged to %1$d%%</string>
+    <string name="shadespace_text_charged">Fully charged</string>
+    <string name="shadespace_text_charging">Charged to %1$d%%</string>
     <string name="title_missing_notification_access">Notification access needed</string>
     <string name="title_change_settings">Change settings</string>
     <string name="icon_badging_service_title">@string/app_name</string>
@@ -10,7 +10,15 @@
 
     <string name="title_activity_settings">@string/app_name</string>
 
-    <string name="category_text">Text Settings</string>
+    <string name="category_text">Font</string>
     <string name="pref_google_sans">Google Sans</string>
     <string name="pref_google_sans_desc">Override device font with Google Sans</string>
+
+    <string name="category_content">Content</string>
+    <string name="pref_current_date">Current date</string>
+    <string name="pref_current_date_desc">Show the current date</string>
+    <string name="pref_charging_perc">Charging percentage</string>
+    <string name="pref_charging_perc_desc">Show the battery percentage while charging</string>
+    <string name="pref_silent_notifs">All notifications</string>
+    <string name="pref_silent_notifs_desc">Also show low priority notifications</string>
 </resources>

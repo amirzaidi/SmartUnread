@@ -27,8 +27,6 @@ public class DateBroadcastReceiver extends AutoRegisterReceiver {
         Uri.Builder timeUri = CalendarContract.CONTENT_URI.buildUpon().appendPath("time");
         ContentUris.appendId(timeUri, System.currentTimeMillis());
         return new Intent(Intent.ACTION_VIEW)
-                .setData(timeUri.build())
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                .setData(timeUri.build());
     }
 }

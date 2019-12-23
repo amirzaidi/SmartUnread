@@ -68,10 +68,8 @@ public class ShadeWidgetProvider extends AppWidgetProvider {
         super.onReceive(context, intent);
 
         if (ACTION_PRESS.equals(intent.getAction())) {
-            Log.d(TAG, "Redestributing press");
             context.sendBroadcast(new Intent(intent.getAction()));
         } else if (ACTION_SETTINGS.equals(intent.getAction())) {
-            Log.d(TAG, "Starting icon badging observer");
             IconBadgingObserver observer = new IconBadgingObserver(context, () -> { });
             observer.onClick();
         }

@@ -26,4 +26,26 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/category_content">
+
+        <SwitchPreference
+            android:key="pref_current_date"
+            android:title="@string/pref_current_date"
+            android:summary="@string/pref_current_date_desc"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:key="pref_charging_perc"
+            android:title="@string/pref_charging_perc"
+            android:summary="@string/pref_charging_perc_desc"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:key="pref_silent_notifs"
+            android:title="@string/pref_silent_notifs"
+            android:summary="@string/pref_silent_notifs_desc"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
