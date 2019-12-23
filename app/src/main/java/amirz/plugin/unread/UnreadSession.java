@@ -93,6 +93,8 @@ class UnreadSession {
     }
 
     List<String> getText() {
+        // Reset onClick
+        mOnClick = () -> {};
         List<String> textList = new ArrayList<>();
 
         // 1. Media
@@ -127,9 +129,9 @@ class UnreadSession {
         // 3. Calendar event
         UnreadSession.OnClickListener openCalendar =
                 () -> startIntent(mDateReceiver.getCalendarIntent());
-        mOnClick = openCalendar;
         CalendarParser.Event event = CalendarParser.getEvent(mContext);
         if (event != null) {
+            mOnClick = openCalendar;
             textList.add(event.name);
             int flags = DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_WEEKDAY;
             textList.add(DateUtils.formatDateTime(mContext, event.start.getTimeInMillis(), flags));
