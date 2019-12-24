@@ -30,6 +30,12 @@
             android:summary="@string/pref_ucfirst_desc"
             android:defaultValue="true" />
 
+        <SwitchPreference
+            android:key="pref_double_title"
+            android:title="@string/pref_double_title"
+            android:summary="@string/pref_double_title_desc"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/category_content">

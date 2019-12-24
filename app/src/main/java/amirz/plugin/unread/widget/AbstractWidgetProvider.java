@@ -132,6 +132,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             setText(remoteViews, R.id.shadespace_text, wPx, top, titleSize,
                     useGoogleSans ? mMeasureTopGSans : mMeasureTop);
 
+            remoteViews.setInt(R.id.shadespace_text, "setMaxLines",
+                    ConfigurationActivity.doubleTitle(context) ? 2 : 1);
+
             // Bottom Line
             setText(remoteViews, R.id.shadespace_subtext, wPx, bottom, textSize,
                     useGoogleSans ? mMeasureBottomGSans : mMeasureBottom);

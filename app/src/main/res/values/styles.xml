@@ -48,8 +48,6 @@
     </style>
 
     <style name="TextTitleOxygen" parent="TextTitle">
-        <item name="android:maxLines">2</item>
-
         <item name="android:textSize">@dimen/smartspace_title_size_oxygen</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:paddingLeft">@dimen/text_horizontal_padding_oxygen</item>

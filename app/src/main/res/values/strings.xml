@@ -15,6 +15,8 @@
     <string name="pref_google_sans_desc">Override device font with Google Sans</string>
     <string name="pref_ucfirst">Capitalize</string>
     <string name="pref_ucfirst_desc">Always start with a capital letter</string>
+    <string name="pref_double_title">Large title</string>
+    <string name="pref_double_title_desc">Use two lines to display long titles</string>
 
     <string name="category_content">Content</string>
     <string name="pref_current_date">Current date</string>

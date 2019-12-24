@@ -16,6 +16,7 @@ import amirz.smartunread.R;
 public class ConfigurationActivity extends Activity {
     private static final String USE_GOOGLE_SANS = "pref_google_sans";
     private static final String UCFIRST = "pref_ucfirst";
+    private static final String DOUBLE_TITLE = "pref_double_title";
     private static final String CURRENT_DATE = "pref_current_date";
     private static final String CHARGING_PERC = "pref_charging_perc";
     private static final String SILENT_NOTIFS = "pref_silent_notifs";
@@ -24,6 +25,7 @@ public class ConfigurationActivity extends Activity {
     private static final String[] PREFS = {
             USE_GOOGLE_SANS,
             UCFIRST,
+            DOUBLE_TITLE,
             CURRENT_DATE,
             CHARGING_PERC,
             SILENT_NOTIFS,
@@ -86,6 +88,10 @@ public class ConfigurationActivity extends Activity {
 
     public static boolean ucFirst(Context context) {
         return getPrefs(context).getBoolean(UCFIRST, true);
+    }
+
+    public static boolean doubleTitle(Context context) {
+        return getPrefs(context).getBoolean(DOUBLE_TITLE, false);
     }
 
     public static boolean currentDate(Context context) {
