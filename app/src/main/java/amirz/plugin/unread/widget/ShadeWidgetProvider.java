@@ -21,6 +21,11 @@ public class ShadeWidgetProvider extends AbstractWidgetProvider {
     int getDefaultTextSize() {
         return R.dimen.smartspace_text_size_shade;
     }
+    
+    @Override
+    int getSidePadding() {
+        return R.dimen.text_horizontal_padding_shade;
+    }
 
     @Override
     float getMinShrink() {

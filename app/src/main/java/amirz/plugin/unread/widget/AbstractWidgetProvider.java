@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -115,7 +114,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         float titleSize = res.getDimension(getDefaultTitleSize());
         float textSize = res.getDimension(getDefaultTextSize());
         float sidePadding = res.getDimension(R.dimen.widget_default_padding)
-                + res.getDimension(R.dimen.text_horizontal_padding);
+                + res.getDimension(getSidePadding());
 
         boolean useGoogleSans = ConfigurationActivity.useGoogleSans(context);
 
@@ -195,6 +194,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     abstract int getDefaultTitleSize();
 
     abstract int getDefaultTextSize();
+
+    abstract int getSidePadding();
 
     abstract float getMinShrink();
 }

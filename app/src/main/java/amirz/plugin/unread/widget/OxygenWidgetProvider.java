@@ -23,6 +23,11 @@ public class OxygenWidgetProvider extends AbstractWidgetProvider {
     }
 
     @Override
+    int getSidePadding() {
+        return R.dimen.text_horizontal_padding_oxygen;
+    }
+
+    @Override
     float getMinShrink() {
         return MIN_SHRINK;
     }

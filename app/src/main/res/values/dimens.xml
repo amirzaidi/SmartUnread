@@ -10,7 +10,9 @@
     <dimen name="smartspace_title_size_oxygen">23sp</dimen>
     <dimen name="smartspace_text_size_oxygen">18sp</dimen>
 
-
-    <dimen name="text_horizontal_padding">4dp</dimen>
+    <dimen name="text_horizontal_padding_shade">4dp</dimen>
     <dimen name="text_horizontal_padding_oxygen">6dp</dimen>
+
+    <dimen name="shadespace_text_height_shade">16dp</dimen>
+    <dimen name="shadespace_text_height_oxygen">8dp</dimen>
 </resources>

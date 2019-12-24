@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/shadespace_text"
         android:layout_width="match_parent"
-        android:layout_height="8dp"
+        android:layout_height="@dimen/shadespace_text_height_oxygen"
         android:layout_gravity="center"
         android:layout_weight="1"
         style="@style/TextTitleOxygen" />
