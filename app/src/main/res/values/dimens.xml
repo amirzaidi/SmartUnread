@@ -7,8 +7,8 @@
     <dimen name="smartspace_title_size_shade">24sp</dimen>
     <dimen name="smartspace_text_size_shade">16sp</dimen>
 
-    <dimen name="smartspace_title_size_oxygen">26sp</dimen>
-    <dimen name="smartspace_text_size_oxygen">17sp</dimen>W
+    <dimen name="smartspace_title_size_oxygen">23sp</dimen>
+    <dimen name="smartspace_text_size_oxygen">18sp</dimen>
 
 
     <dimen name="text_horizontal_padding">4dp</dimen>

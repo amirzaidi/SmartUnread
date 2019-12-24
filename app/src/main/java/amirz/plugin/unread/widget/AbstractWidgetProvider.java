@@ -33,8 +33,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     public static final String ACTION_PRESS = "amirz.plugin.unread.widget.ACTION_PRESS";
     public static final String ACTION_SETTINGS = "amirz.plugin.unread.widget.ACTION_SETTINGS";
 
-    private static final float MIN_SHRINK = 0.85f;
-
     private final TextPaint mMeasureTop = new TextPaint();
     private final TextPaint mMeasureBottom = new TextPaint();
 
@@ -147,13 +145,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    private static void setText(RemoteViews remoteViews, int viewId, float widthPx, String text,
+    private void setText(RemoteViews remoteViews, int viewId, float widthPx, String text,
                                 float defaultTextSize, TextPaint measurePaint) {
         double ratio = Math.min(1d, widthPx / measurePaint.measureText(text));
         remoteViews.setTextViewText(viewId, text);
         remoteViews.setTextViewTextSize(viewId,
                 TypedValue.COMPLEX_UNIT_PX,
-                (float) Math.floor(Math.max(ratio, MIN_SHRINK) * defaultTextSize));
+                (float) Math.floor(Math.max(ratio, getMinShrink()) * defaultTextSize));
     }
 
     @Override
@@ -197,4 +195,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     abstract int getDefaultTitleSize();
 
     abstract int getDefaultTextSize();
+
+    abstract float getMinShrink();
 }
