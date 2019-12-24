@@ -24,6 +24,12 @@
             android:summary="@string/pref_google_sans_desc"
             android:defaultValue="true" />
 
+        <SwitchPreference
+            android:key="pref_ucfirst"
+            android:title="@string/pref_ucfirst"
+            android:summary="@string/pref_ucfirst_desc"
+            android:defaultValue="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/category_content">

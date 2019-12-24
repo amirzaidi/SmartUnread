@@ -13,6 +13,8 @@
     <string name="category_text">Font</string>
     <string name="pref_google_sans">Google Sans</string>
     <string name="pref_google_sans_desc">Override device font with Google Sans</string>
+    <string name="pref_ucfirst">Capitalize</string>
+    <string name="pref_ucfirst_desc">Always start with a capital letter</string>
 
     <string name="category_content">Content</string>
     <string name="pref_current_date">Current date</string>

@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -93,6 +94,11 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 } else if (text.size() > 2) {
                     bottom = context.getString(R.string.shadespace_subtext_double, text.get(1), text.get(2));
                 }
+            }
+
+            if (ConfigurationActivity.ucFirst(context)) {
+                top = ucFirst(top);
+                bottom = ucFirst(bottom);
             }
         } else {
             intent.setAction(ACTION_SETTINGS);
@@ -178,6 +184,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
             ctx.sendBroadcast(intent);
         }
+    }
+
+    private static String ucFirst(String input) {
+        return !TextUtils.isEmpty(input)
+                ? (input.substring(0, 1).toUpperCase() + input.substring(1))
+                : input;
     }
 
     abstract int getLayoutId(boolean useGoogleSans);
